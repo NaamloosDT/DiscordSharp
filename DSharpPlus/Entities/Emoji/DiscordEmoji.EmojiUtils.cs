@@ -30,12 +30,12 @@ namespace DSharpPlus.Entities
         /// <summary>
         /// Gets a mapping of :name: => unicode.
         /// </summary>
-        private static IReadOnlyDictionary<string, string> UnicodeEmojis { get; }
+        internal static IReadOnlyDictionary<string, string> UnicodeEmojis { get; }
 
         /// <summary>
         /// Gets a mapping of unicode => :name:.
         /// </summary>
-        private static IReadOnlyDictionary<string, string> DiscordNameLookup { get; }
+        internal static IReadOnlyDictionary<string, string> DiscordNameLookup { get; }
 
         static DiscordEmoji()
         {

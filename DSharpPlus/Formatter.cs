@@ -34,7 +34,7 @@ namespace DSharpPlus
     public static class Formatter
     {
         private static Regex MdSanitizeRegex { get; } = new Regex(@"([`\*_~<>\[\]\(\)""@\!\&#:\|])", RegexOptions.ECMAScript);
-        private static Regex MdStripRegex { get; } = new Regex(@"([`\*_~\[\]\(\)""\|]|<@\!?\d+>|<#\d+>|<@\&\d+>|<:[a-zA-Z0-9_\-]:\d+>)", RegexOptions.ECMAScript);
+        private static Regex MdStripRegex { get; } = new Regex(@"([`\*_~\[\]\(\)""\|]|<@\!?\d+>|<#\d+>|<@\&\d+>|<a?:[a-zA-Z0-9_\-]:\d+>)", RegexOptions.ECMAScript);
 
         /// <summary>
         /// Creates a block of code.

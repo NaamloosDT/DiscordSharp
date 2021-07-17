@@ -275,6 +275,38 @@ namespace DSharpPlus.Entities
         }
 
         /// <summary>
+        /// Creates an emoji object from a guild emote information specified in the emote message tag. If an emote is unknown, constructs an emoji object based on the provided information.
+        /// </summary>
+        /// <param name="client"><see cref="BaseDiscordClient"/> to attach to the object.</param>
+        /// <param name="id">Id of the emote.</param>
+        /// <param name="name">The expected name of the emote.</param>
+        /// <param name="isAnimated">Is the emote is expected to be animated.</param>
+        /// <returns>Create <see cref="DiscordEmoji"/> object.</returns>
+        public static DiscordEmoji FromGuildEmoteTagInfo(BaseDiscordClient client, ulong id, string name, bool isAnimated = false)
+        {
+            if (client == null)
+                throw new ArgumentNullException(nameof(client), "Client cannot be null.");
+            var found = TryFromGuildEmote(client, id, out var emote);
+            if (found)
+                return emote;
+            // We still have enough information to construct a dummy DiscordEmoji
+            // which could provide us for example an Url for the emoji
+            // This could happen if eg a Nitro user used an emoji from a server
+            // where the bot is not present
+            // We explicitely mark as IsAvailable = false to avoid it's usage
+            return new DiscordEmoji
+            {
+                Id = id,
+                Name = name,
+                IsAvailable = false,
+                IsAnimated = isAnimated,
+                Discord = client,
+                // Supposedly impossible for a guild emote to not require colons
+                RequiresColons = true
+            };
+        }
+
+        /// <summary>
         /// Attempts to create an emoji object from a guild emote.
         /// </summary>
         /// <param name="client"><see cref="BaseDiscordClient"/> to attach to the object.</param>
