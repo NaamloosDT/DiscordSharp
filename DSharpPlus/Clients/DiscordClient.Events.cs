@@ -59,6 +59,16 @@ namespace DSharpPlus
         private AsyncEvent<DiscordClient, SocketEventArgs> _socketOpened;
 
         /// <summary>
+        /// Fired when a gateway
+        /// </summary>
+        public event AsyncEventHandler<DiscordClient, PayloadReceivedEventArgs> PayloadReceived
+        {
+            add => this._payloadReceived.Register(value);
+            remove => this._payloadReceived.Unregister(value);
+        }
+        private AsyncEvent<DiscordClient, PayloadReceivedEventArgs> _payloadReceived;
+
+        /// <summary>
         /// Fired whenever WebSocket connection is terminated.
         /// </summary>
         public event AsyncEventHandler<DiscordClient, SocketCloseEventArgs> SocketClosed
