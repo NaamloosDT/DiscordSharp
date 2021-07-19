@@ -443,7 +443,8 @@ namespace DSharpPlus
                     ShardCount = this.Configuration.ShardCount
                 },
                 Presence = status,
-                Intents = this.Configuration.Intents
+                Intents = this.Configuration.Intents,
+                Discord = this
             };
             var payload = new GatewayPayload
             {

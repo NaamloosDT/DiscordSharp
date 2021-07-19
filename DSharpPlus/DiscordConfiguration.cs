@@ -188,6 +188,12 @@ namespace DSharpPlus
         public ILoggerFactory LoggerFactory { internal get; set; } = null;
 
         /// <summary>
+        /// <para>Sets if the bot's status should show the mobile icon.</para>
+        /// <para>Defaults to false.</para>
+        /// </summary>
+        public bool MobileStatus { internal get; set; } = false;
+
+        /// <summary>
         /// Creates a new configuration with default values.
         /// </summary>
         public DiscordConfiguration()
@@ -217,6 +223,7 @@ namespace DSharpPlus
             this.ReconnectIndefinitely = other.ReconnectIndefinitely;
             this.Intents = other.Intents;
             this.LoggerFactory = other.LoggerFactory;
+            this.MobileStatus = other.MobileStatus;
         }
     }
 }
