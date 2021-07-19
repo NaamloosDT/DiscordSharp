@@ -38,7 +38,7 @@ namespace DSharpPlus.Entities
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the value of this choice parameter. This will either be a type of <see cref="int"/> / <see cref="long"/> or <see cref="string"/>.
+        /// Gets the value of this choice parameter. This will either be a type of <see cref="int"/> / <see cref="long"/>, <see cref="double"/> or <see cref="string"/>.
         /// </summary>
         [JsonProperty("value")]
         public object Value { get; set; }
@@ -50,8 +50,8 @@ namespace DSharpPlus.Entities
         /// <param name="value">The value of the parameter choice.</param>
         public DiscordApplicationCommandOptionChoice(string name, object value)
         {
-            if (!(value is string || value is long || value is int))
-                throw new InvalidOperationException($"Only {typeof(string)}, {typeof(long)} or {typeof(int)} types may be passed to a command option choice.");
+            if (!(value is string || value is long || value is int || value is double))
+                throw new InvalidOperationException($"Only {typeof(string)}, {typeof(long)}, {typeof(double)} or {typeof(int)} types may be passed to a command option choice.");
 
             if (name.Length > 100)
                 throw new ArgumentException("Slash command choice name cannot exceed 100 characters.", nameof(name));
