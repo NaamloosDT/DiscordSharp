@@ -51,6 +51,43 @@ namespace DSharpPlus.Entities
         public string Description { get; internal set; }
 
         /// <summary>
+        /// Gets the type of sticker.
+        /// </summary>
+        [JsonProperty("type")]
+        public StickerType Type { get; internal set; }
+
+        /// <summary>
+        /// For guild stickers, gets the user that made the sticker.
+        /// </summary>
+        [JsonProperty("user")]
+        public DiscordUser User { get; internal set; }
+
+        /// <summary>
+        /// Gets the guild associated with this sticker, if any.
+        /// </summary>
+        public DiscordGuild Guild => (this.Discord as DiscordClient).InternalGetCachedGuild(this.GuildId);
+
+        public string StickerUrl => $"https://cdn.discordapp.com/stickers/{this.Id}{this.GetFileTypeExtension()}";
+
+        /// <summary>
+        /// Gets the Id of the sticker this guild belongs to, if any.
+        /// </summary>
+        [JsonProperty("guild_id")]
+        public ulong? GuildId { get; internal set; }
+
+        /// <summary>
+        /// Gets whether this sticker is available. Only applicable to guild stickers.
+        /// </summary>
+        [JsonProperty("available")]
+        public bool Available { get; internal set; }
+
+        /// <summary>
+        /// Gets the sticker's sort order, if it's in a pack.
+        /// </summary>
+        [JsonProperty("sort_value")]
+        public int SortValue { get; internal set; }
+
+        /// <summary>
         /// Gets the list of tags for the sticker.
         /// </summary>
         [JsonIgnore]
@@ -76,9 +113,29 @@ namespace DSharpPlus.Entities
         public StickerFormat FormatType { get; internal set; }
 
         [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
-        private string _internalTags { get; set; }
+        internal string _internalTags { get; set; }
+
+        public string BannerUrl => $"https://cdn.discordapp.com/app-assets/710982414301790216/store/{this.BannerAssetId}.png?size=4096";
+
+        [JsonProperty("banner_asset_id")]
+        internal ulong BannerAssetId { get; set; }
 
         public bool Equals(DiscordMessageSticker other) => this.Id == other.Id;
+
+        public override string ToString() => $"Sticker {this.Id}; {this.Name}; {this.FormatType}";
+
+        private string GetFileTypeExtension() => this.FormatType switch
+        {
+            StickerFormat.PNG => ".png",
+            StickerFormat.APNG => ".apng",
+            StickerFormat.LOTTIE => ".json"
+        };
+    }
+
+    public enum StickerType
+    {
+        Standard = 1,
+        Guild = 2
     }
 
     public enum StickerFormat

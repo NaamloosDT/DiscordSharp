@@ -128,6 +128,9 @@ namespace DSharpPlus.Net.Abstractions
         [JsonProperty("tts", NullValueHandling = NullValueHandling.Ignore)]
         public bool? IsTTS { get; set; }
 
+        [JsonProperty("sticker_ids", NullValueHandling = NullValueHandling.Ignore)]
+        public IEnumerable<ulong> StickersIds { get; set; } // Discord sends an array, but you can only have one* sticker on a message //
+
         [JsonProperty("message_reference", NullValueHandling = NullValueHandling.Ignore)]
         public InternalDiscordMessageReference? MessageReference { get; set; }
 

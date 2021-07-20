@@ -312,7 +312,7 @@ namespace DSharpPlus.Entities
         public IReadOnlyList<DiscordMessageSticker> Stickers
             => this._stickersLazy.Value;
 
-        [JsonProperty("stickers", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("sticker_items", NullValueHandling = NullValueHandling.Ignore)]
         internal List<DiscordMessageSticker> _stickers = new();
         [JsonIgnore]
         private readonly Lazy<IReadOnlyList<DiscordMessageSticker>> _stickersLazy;

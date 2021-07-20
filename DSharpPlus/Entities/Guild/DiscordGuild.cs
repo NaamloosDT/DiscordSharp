@@ -249,6 +249,18 @@ namespace DSharpPlus.Entities
         [JsonConverter(typeof(SnowflakeArrayAsDictionaryJsonConverter))]
         internal ConcurrentDictionary<ulong, DiscordRole> _roles;
 
+
+        /// <summary>
+        /// Gets a collection of this guild's stickers.
+        /// </summary>
+        [JsonIgnore]
+        public IReadOnlyDictionary<ulong, DiscordMessageSticker> Stickers => new ReadOnlyConcurrentDictionary<ulong, DiscordMessageSticker>(this._stickers);
+
+        [JsonProperty("stickers", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(SnowflakeArrayAsDictionaryJsonConverter))]
+        internal ConcurrentDictionary<ulong, DiscordMessageSticker> _stickers = new();
+
+
         /// <summary>
         /// Gets a collection of this guild's emojis.
         /// </summary>

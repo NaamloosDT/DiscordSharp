@@ -25,6 +25,7 @@ namespace DSharpPlus.Net
 {
     internal static class Endpoints
     {
+
         public const string BASE_URI = "https://discord.com/api/v8";
 
         public const string ORIGINAL = "/@original";
@@ -80,5 +81,7 @@ namespace DSharpPlus.Net
         public const string CALLBACK = "/callback";
         public const string WELCOME_SCREEN = "/welcome-screen";
         public const string VOICE_STATES = "/voice-states";
+        public const string STICKERS = "/stickers";
+        public const string STICKERPACKS = "/sticker-packs";
     }
 }

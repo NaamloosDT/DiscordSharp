@@ -79,6 +79,7 @@ namespace DSharpPlus.Test
 
             // events
             this.Discord.Ready += this.Discord_Ready;
+            this.Discord.GuildStickersUpdated += this.Discord_StickersUpdated;
             this.Discord.GuildAvailable += this.Discord_GuildAvailable;
             //Discord.PresenceUpdated += this.Discord_PresenceUpdated;
             //Discord.ClientErrored += this.Discord_ClientErrored;
@@ -154,6 +155,11 @@ namespace DSharpPlus.Test
 
             //    _ = Task.Run(async () => await e.Message.RespondAsync(e.Message.Content)).ConfigureAwait(false);
             //};
+        }
+        private Task Discord_StickersUpdated(DiscordClient sender, GuildStickersUpdateEventArgs e)
+        {
+            this.Discord.Logger.LogInformation($"{e.Guild.Id}'s stickers updated: {e.StickersBefore.Count()} -> {e.StickersAfter.Count()}");
+            return Task.CompletedTask;
         }
 
         public async Task RunAsync()

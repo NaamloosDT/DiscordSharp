@@ -349,6 +349,7 @@ namespace DSharpPlus
             return vs;
         });
 
+
         #endregion
 
         #region Private Connection Methods

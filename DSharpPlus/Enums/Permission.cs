@@ -197,9 +197,9 @@ namespace DSharpPlus
         MentionEveryone = 0x0000000000020000,
 
         /// <summary>
-        /// Allows using emojis from external servers, such as twitch or nitro emojis.
+        /// Allows using emojis or stickers from external servers, such as twitch or nitro emojis.
         /// </summary>
-        [PermissionString("Use external emojis")]
+        [PermissionString("Use external emojis and stickers")]
         UseExternalEmojis = 0x0000000000040000,
 
         /// <summary>
@@ -263,9 +263,9 @@ namespace DSharpPlus
         ManageWebhooks = 0x0000000020000000,
 
         /// <summary>
-        /// Allows managing guild emoji.
+        /// Allows managing guild emoji and stickers.
         /// </summary>
-        [PermissionString("Manage emoji")]
+        [PermissionString("Manage emoji and stickers")]
         ManageEmojis = 0x0000000040000000,
 
         /// <summary>
@@ -285,19 +285,19 @@ namespace DSharpPlus
         /// </summary>
         [PermissionString("Request to speak")]
         RequestToSpeak = 0x0000000100000000,
-        
+
         /// <summary>
         /// Allows for deleting and archiving threads, and viewing all private threads.
         /// </summary>
         [PermissionString("Manage Threads")]
         ManageThreads = 0x0000000400000000,
-        
+
         /// <summary>
         /// Allows for creating and participating in threads.
         /// </summary>
         [PermissionString("Use Public Threads")]
         UsePublicThreads = 0x0000000800000000,
-        
+
         /// <summary>
         /// Allows for creating and participating in private threads.
         /// </summary>
