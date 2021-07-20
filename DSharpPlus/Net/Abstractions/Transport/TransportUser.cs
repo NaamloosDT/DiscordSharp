@@ -39,6 +39,12 @@ namespace DSharpPlus.Net.Abstractions
         [JsonProperty("avatar", NullValueHandling = NullValueHandling.Ignore)]
         public string AvatarHash { get; internal set; }
 
+        [JsonProperty("banner", NullValueHandling = NullValueHandling.Ignore)]
+        public string BannerHash { get; internal set; }
+
+        [JsonProperty("banner_color")]
+        public int BannerColor { get; internal set; }
+
         [JsonProperty("bot", NullValueHandling = NullValueHandling.Ignore)]
         public bool IsBot { get; internal set; }
 
@@ -71,6 +77,8 @@ namespace DSharpPlus.Net.Abstractions
             this.Username = other.Username;
             this.Discriminator = other.Discriminator;
             this.AvatarHash = other.AvatarHash;
+            this.BannerHash = other.BannerHash;
+            this.BannerColor = other.BannerColor;
             this.IsBot = other.IsBot;
             this.MfaEnabled = other.MfaEnabled;
             this.Verified = other.Verified;

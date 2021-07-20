@@ -42,6 +42,7 @@ namespace DSharpPlus.Entities
             this.Username = transport.Username;
             this.Discriminator = transport.Discriminator;
             this.AvatarHash = transport.AvatarHash;
+            this._bannerColor = transport.BannerColor;
             this.IsBot = transport.IsBot;
             this.MfaEnabled = transport.MfaEnabled;
             this.Verified = transport.Verified;
@@ -69,10 +70,33 @@ namespace DSharpPlus.Entities
             => int.Parse(this.Discriminator, NumberStyles.Integer, CultureInfo.InvariantCulture);
 
         /// <summary>
+        /// Gets the user's banner color, if set. Mutually exclusive with <see cref="BannerHash"/>.
+        /// </summary>
+        public virtual DiscordColor? BannerColor
+            => this._bannerColor == 0 ? null : new DiscordColor(this._bannerColor);
+
+        [JsonProperty("banner_color")]
+        internal int _bannerColor;
+
+        /// <summary>
+        /// Gets the user's banner url.
+        /// </summary>
+        [JsonIgnore]
+        public string BannerUrl
+            => string.IsNullOrEmpty(this.BannerHash) ? null : $"https://cdn.discordapp.com/banners/{this.Id}/{this.BannerHash}.{(this.BannerHash.StartsWith("a") ? "gif" : "png")}?size=4096";
+
+        /// <summary>
+        /// Gets the user's profile banner hash. Mutually exclusive with <see cref="BannerColor"/>.
+        /// </summary>
+        [JsonProperty("banner", NullValueHandling = NullValueHandling.Ignore)]
+        public virtual string BannerHash { get; internal set; }
+
+        /// <summary>
         /// Gets the user's avatar hash.
         /// </summary>
         [JsonProperty("avatar", NullValueHandling = NullValueHandling.Ignore)]
         public virtual string AvatarHash { get; internal set; }
+
 
         /// <summary>
         /// Gets the user's avatar URL.
